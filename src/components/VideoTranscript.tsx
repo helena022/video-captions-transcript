@@ -52,6 +52,13 @@ const VideoTranscription: React.FC<VideoPlayerProps> = ({ videoUrl, captionsUrl 
   const handleTimeUpdate = () => {
     setCurrentTime(videoRef?.current?.currentTime)
   }
+
+  const handleTranscriptClick = (time: number) => {
+    if (!videoRef.current) return
+    
+    videoRef.current.currentTime = time
+    setCurrentTime(time)
+  }
   
   return (
     <>
@@ -81,6 +88,7 @@ const VideoTranscription: React.FC<VideoPlayerProps> = ({ videoUrl, captionsUrl 
             currentTime={currentTime} 
             captions={captions} 
             currentCaption={currentCaption}
+            handleTranscriptClick={handleTranscriptClick} 
           />
         }
       </div>
