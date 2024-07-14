@@ -188,20 +188,26 @@ const VideoTranscription: React.FC<VideoPlayerProps> = ({ videoUrl, captionsUrl 
               </svg>
             </div>
             {showSettings && 
-              <div className="hidden w-1/3 bg-neutral-600 py-2 rounded-xl group-hover:block md:w-1/5 ">
-                {MENU_ITEMS.map(item =>
-                  <div key={`${item.name}`} className="w-full">
-                    <div className={`${activeMenuItem === item.name ? 'bg-neutral-700' : ''} flex justify-between items-center px-3 py-2 cursor-pointer hover:bg-neutral-700`} onClick={() => handleMenuItemClick(item.name)}>
-                      <span className="mb-1">{item.label}</span><svg  xmlns="http://www.w3.org/2000/svg"  width="18"  height="18"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
+              <>
+                <div className="fixed inset-0" onClick={() => toggleSettingsMenu()}></div>
+                <div className="hidden z-20 w-1/3 bg-neutral-600 py-2 rounded-xl group-hover:block md:w-1/5">
+                  {MENU_ITEMS.map(item =>
+                    <div key={`${item.name}`} className="w-full">
+                      <div 
+                        className={`${activeMenuItem === item.name ? 'bg-neutral-700' : ''} flex justify-between items-center px-3 py-2 cursor-pointer hover:bg-neutral-700`} 
+                        onClick={() => handleMenuItemClick(item.name)}
+                      >
+                        <span className="mb-1">{item.label}</span><svg  xmlns="http://www.w3.org/2000/svg"  width="18"  height="18"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
+                      </div>
+                      <ul className={`${activeMenuItem === item.name ? 'flex' : 'hidden'} flex-col gap-1`}>
+                        {item.options.map(option =>
+                          <li key={`${item.name}-${option.value}`} className="text-neutral-300 px-3 py-1 cursor-pointer hover:bg-neutral-700" onClick={() => handleCueSettingsChange(item.name, option.value)}>&#8226; {option.label}</li>
+                        )}
+                      </ul>
                     </div>
-                    <ul className={`${activeMenuItem === item.name ? 'flex' : 'hidden'} flex-col gap-1`}>
-                      {item.options.map(option =>
-                        <li key={`${item.name}-${option.value}`} className="px-3 py-1 cursor-pointer hover:bg-neutral-700" onClick={() => handleCueSettingsChange(item.name, option.value)}>&#8226; {option.label}</li>
-                      )}
-                    </ul>
-                  </div>
-                )}
-              </div>
+                  )}
+                </div>
+              </>
             }
           </div>
         </div>
