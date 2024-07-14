@@ -142,7 +142,7 @@ const VideoTranscription: React.FC<VideoPlayerProps> = ({ videoUrl, captionsUrl 
 
   return (
     <>
-      <div className="col-span-2">
+      <div className="col-span-3 lg:col-span-2">
         <div className="relative group rounded-2xl">
           <video
             ref={videoRef}
@@ -200,7 +200,7 @@ const VideoTranscription: React.FC<VideoPlayerProps> = ({ videoUrl, captionsUrl 
           </div>
         </div>
       </div>
-      <div className="col-span-1">
+      <div className="col-span-3 lg:col-span-1">
         {!!captions && 
           <Transcript 
             currentTime={currentTime} 
