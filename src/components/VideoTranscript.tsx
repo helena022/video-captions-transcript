@@ -89,6 +89,12 @@ const VideoTranscription: React.FC<VideoPlayerProps> = ({ videoUrl, captionsUrl 
   }, [])
 
   useEffect(() => {
+    setCurrentCaption(null)
+
+    fetchCaptions()
+   }, [videoUrl])
+
+  useEffect(() => {
     if (!captions) return
 
     const caption = [...captions].find(caption => currentTime >= caption.start && currentTime < caption.end)
@@ -142,17 +148,17 @@ const VideoTranscription: React.FC<VideoPlayerProps> = ({ videoUrl, captionsUrl 
 
   return (
     <>
-      <div className="col-span-3 lg:col-span-2">
-        <div className="relative group rounded-2xl">
+      <div className="col-span-3 lg:col-span-2 lg:row-span-5">
+        <div className="relative group h-[30vh] lg:h-[75vh]">
           <video
+            src={videoUrl}
             ref={videoRef}
             controls
             width="100%"
             height="auto"
             onTimeUpdate={handleTimeUpdate}
-            className="rounded-2xl overflow-hidden"
+            className="rounded-2xl overflow-hidden h-full bg-black"
           >
-            <source src={videoUrl} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
           
@@ -200,7 +206,7 @@ const VideoTranscription: React.FC<VideoPlayerProps> = ({ videoUrl, captionsUrl 
           </div>
         </div>
       </div>
-      <div className="col-span-3 lg:col-span-1">
+      <div className="col-span-3 lg:col-span-1 row-span-6">
         {!!captions && 
           <Transcript 
             currentTime={currentTime} 

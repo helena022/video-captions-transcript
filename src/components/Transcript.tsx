@@ -23,7 +23,7 @@ const Transcript: React.FC<TranscriptProps> = ({ currentTime, captions, currentC
   return (
     <div className="bg-neutral-100 py-4 rounded-xl">
       <h1 className="px-4 text-2xl font-semibold mb-4">Transcript</h1>
-      <div className="h-[50vh] flex flex-col gap-4 overflow-y-auto px-4 lg:h-[75vh]">
+      <div className="h-[45vh] flex flex-col gap-4 overflow-y-auto px-4 lg:h-[75vh]">
        {captions.map((caption: CaptionType) => (
           <div 
             ref={isActive(caption.start, caption.end) ? activeCaptionRef : null} key={caption.index} 
