@@ -8,3 +8,14 @@ export const timeStringToSeconds = (timeString: string) => {
 
   return totalSeconds
 }
+
+export const secondsToHms = (secNum: number) => {
+  let hours   = Math.floor(secNum / 3600)
+  let minutes = Math.floor(secNum / 60) % 60
+  let seconds = Math.round(secNum % 60)
+
+  return [hours,minutes,seconds]
+      .map(v => v < 10 ? "0" + v : v)
+      .filter((v,i) => v !== "00" || i > 0)
+      .join(":")
+}

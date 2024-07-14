@@ -1,12 +1,12 @@
-import VideoTranscription from "./components/VideoTranscription"
+import VideoTranscript from "./components/VideoTranscript"
 
 function App() {
   return (
     <div className="w-full h-full p-4 bg-neutral-900 min-h-screen">
       <div className="grid grid-cols-3 gap-4 p-4">
-        <VideoTranscription
-          videoUrl="/assets/videos/clip_2.mp4" 
-          captionsUrl="/assets/captions/captions_2.srt"
+        <VideoTranscript
+          videoUrl="/assets/videos/clip_1.mp4" 
+          captionsUrl="/assets/captions/captions_1.srt"
         />
       </div>
     </div>

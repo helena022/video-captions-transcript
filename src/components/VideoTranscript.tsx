@@ -2,8 +2,9 @@ import { useRef, useState, useEffect } from 'react'
 import { parseSRT } from '../utils/functions/captions'
 
 import Caption from './Caption';
+import Transcript from './Transcript';
 
-type CaptionType = { 
+export type CaptionType = { 
   index: number; 
   start: number; 
   end: number; 
@@ -14,7 +15,6 @@ interface VideoPlayerProps {
   videoUrl: string
   captionsUrl: string
 }
-
 
 const VideoTranscription: React.FC<VideoPlayerProps> = ({ videoUrl, captionsUrl }) => {
   const videoRef = useRef<HTMLVideoElement  | null>(null)
@@ -74,6 +74,15 @@ const VideoTranscription: React.FC<VideoPlayerProps> = ({ videoUrl, captionsUrl 
             </div>
           }
         </div>
+      </div>
+      <div className="col-span-1">
+        {!!captions && 
+          <Transcript 
+            currentTime={currentTime} 
+            captions={captions} 
+            currentCaption={currentCaption}
+          />
+        }
       </div>
     </>
   )
